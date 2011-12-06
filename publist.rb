@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
 
-
 if ARGV.length < 1
 	puts "Please enter a path ./example/: "
 	dir = $stdin.gets.chomp
@@ -10,8 +9,7 @@ end
 
 if ARGV.length < 2
 	puts "Please enter a date YYYYMMDD: "
-	date = $stdin.gets.chomp.to_i	
-	#date = 20111202
+	date = $stdin.gets.chomp.to_i		
 else 
 	date = ARGV[1].to_i
 end
@@ -35,8 +33,7 @@ Dir.foreach(dir) do |entry|
   
   	file_name = entry.gsub(/\s+/, "").split(/_/)
 	 	
-  	if file_name[3].to_i >= date and file_name[4].to_i >= time
-  	
+  	if file_name[3].to_i >= date and file_name[4].to_i >= time  	
   		#puts "\nFile name: " + entry
   		#puts "Beginning of file *******************************************"
   		file = File.open(dir + entry)
@@ -44,17 +41,12 @@ Dir.foreach(dir) do |entry|
 			#puts line
 			links_array.push line unless /^#/.match(line) or line=="\n"
  	 	end
-		#puts "End of file *************************************************\n"
-	
-	
+		#puts "End of file *************************************************\n"	
 	end
 	
   end
   
 end
 
-#puts links_array.sort.uniq
-puts "\n\n\n"
-puts "Number of links found: #{links_array.length}" 
-
+puts "Number of unique links found: #{links_array.uniq.length}" 
 puts links_array.sort.uniq
