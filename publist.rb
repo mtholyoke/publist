@@ -10,7 +10,7 @@ end
 
 if ARGV.length < 2
 	puts "Please enter a date YYYYMMDD: "
-	date = $stdin.gets.chomp	
+	date = $stdin.gets.chomp.to_i	
 	#date = 20111202
 else 
 	date = ARGV[1].to_i
@@ -18,7 +18,7 @@ end
 
 if ARGV.length < 3
 	puts "Please enter a time HHMMSS: "
-	time = $stdin.gets.chomp
+	time = $stdin.gets.chomp.to_i
 else 
 	time = ARGV[2].to_i
 end
@@ -35,7 +35,7 @@ Dir.foreach(dir) do |entry|
   
   	file_name = entry.gsub(/\s+/, "").split(/_/)
 	 	
-  	if file_name[3].to_i >= date.to_i and file_name[4].to_i >= time.to_i
+  	if file_name[3].to_i >= date and file_name[4].to_i >= time
   	
   		#puts "\nFile name: " + entry
   		#puts "Beginning of file *******************************************"
