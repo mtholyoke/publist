@@ -33,15 +33,17 @@ Dir.foreach(dir) do |entry|
   
   	file_name = entry.gsub(/\s+/, "").split(/_/)
 	 	
-  	if file_name[3].to_i >= date and file_name[4].to_i >= time  	
-  		#puts "\nFile name: " + entry
-  		#puts "Beginning of file *******************************************"
-  		file = File.open(dir + entry)
-		while (line = file.gets)
-			#puts line
-			links_array.push line unless /^#/.match(line) or line=="\n"
- 	 	end
-		#puts "End of file *************************************************\n"	
+  	if file_name[3].to_i >= date 
+  		if file_name[4].to_i >= time  	
+  			#puts "\nFile name: " + entry
+  			#puts "Beginning of file *******************************************"
+  			file = File.open(dir + entry)
+			while (line = file.gets)
+				#puts line
+				links_array.push line unless /^#/.match(line) or line=="\n"
+ 	 		end
+			#puts "End of file *************************************************\n"	
+		end
 	end
 	
   end
